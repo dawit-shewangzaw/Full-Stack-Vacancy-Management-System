@@ -6,6 +6,7 @@ import JobTable from "../Components/JobTable";
 import Footer from "../Components/Footer";
 
 
+
 function Home() {
     return (
       <>
@@ -13,7 +14,7 @@ function Home() {
             <Navbar/>
             <IntroPage/>
             <Cards/>
-            <JobTable/>
+            <JobTable/>          
             <Footer/>
       </div>
       </>
