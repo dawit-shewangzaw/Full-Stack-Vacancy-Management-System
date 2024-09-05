@@ -1,34 +1,42 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 import { Link } from 'react-router-dom';
 
-const ApplicationSubmitted = () => {
+const Application = () => {
+
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, []);
+
   const [currentPage, setCurrentPage] = useState(1);
 
+  // Job listings grouped by page
   const jobLists = [
     [
-      { name: '3D Designer', candidates: 10, created: '3m ago', link: '/job/3d-designer' },
-      { name: 'Web Developer', candidates: 8, created: '5m ago', link: '/job/web-developer' },
-      { name: 'Graphic Designer', candidates: 12, created: '10m ago', link: '/job/graphic-designer' },
-      { name: 'Product Manager', candidates: 7, created: '15m ago', link: '/job/product-manager' },
-      { name: 'Data Scientist', candidates: 9, created: '20m ago', link: '/job/data-scientist' },
+      { name: '3D Designer', candidates: 10, created: '3m ago', link: '/applicant-list' },
+      { name: 'Web Developer', candidates: 8, created: '5m ago', link: '/applicant-list' },
+      { name: 'Graphic Designer', candidates: 12, created: '10m ago', link: '/applicant-list' },
+      { name: 'Product Manager', candidates: 7, created: '15m ago', link: '/applicant-list' },
+      { name: 'Data Scientist', candidates: 9, created: '20m ago', link: '/applicant-list' },
     ],
     [
-      { name: 'Marketing Specialist', candidates: 5, created: '25m ago', link: '/job/marketing-specialist' },
-      { name: 'UX/UI Designer', candidates: 6, created: '30m ago', link: '/job/ux-ui-designer' },
-      { name: 'System Analyst', candidates: 11, created: '35m ago', link: '/job/system-analyst' },
-      { name: 'DevOps Engineer', candidates: 4, created: '40m ago', link: '/job/devops-engineer' },
-      { name: 'HR Manager', candidates: 3, created: '45m ago', link: '/job/hr-manager' },
+      { name: 'Marketing Specialist', candidates: 5, created: '25m ago', link: '/applicant-list' },
+      { name: 'UX/UI Designer', candidates: 6, created: '30m ago', link: '/applicant-list' },
+      { name: 'System Analyst', candidates: 11, created: '35m ago', link: '/applicant-list' },
+      { name: 'DevOps Engineer', candidates: 4, created: '40m ago', link: '/applicant-list' },
+      { name: 'HR Manager', candidates: 3, created: '45m ago', link: '/applicant-list' },
     ],
   ];
 
   const totalPages = jobLists.length;
 
+  // Handle navigation to the previous page
   const handlePrevPage = () => {
     if (currentPage > 1) {
       setCurrentPage(currentPage - 1);
     }
   };
 
+  // Handle navigation to the next page
   const handleNextPage = () => {
     if (currentPage < totalPages) {
       setCurrentPage(currentPage + 1);
@@ -92,4 +100,4 @@ const ApplicationSubmitted = () => {
   );
 };
 
-export default ApplicationSubmitted;
+export default Application;

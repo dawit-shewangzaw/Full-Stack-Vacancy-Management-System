@@ -1,6 +1,10 @@
-import React from 'react';
+import React, {useEffect} from 'react';
+import { Link } from 'react-router-dom';
 
 const JobDescription = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, []);
   return (
     <section className="py-12 px-4 sm:px-8 lg:px-16 bg-[#F9F9FB]">
       <div className="grid grid-cols-1 gap-8 mt-16"> {/* Reduced mt-16 to decrease space from the Navbar */}
@@ -34,9 +38,11 @@ const JobDescription = () => {
               <li>Qualification line 5 Lorem ipsum dolor sit amet consectetur adipisicing elit. Rem nulla eos autem? Fugiat deleniti sit perspiciatis magni tenetur officia voluptate iusto nostrum! Sequi facilis repellat, ex dolore placeat rerum a!</li>
             </ul>
           </div>
-          <button className="bg-[#0A9C4A] text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full hover:bg-orange-900">
-            Apply
-          </button>
+          <Link to="/apply">
+            <button className="bg-[#0A9C4A] text-white px-6 sm:px-8 py-2 sm:py-3 rounded-full hover:bg-orange-900">
+              Apply
+            </button>
+          </Link>
         </div>
       </div>
     </section>

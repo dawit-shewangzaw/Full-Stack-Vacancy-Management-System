@@ -1,37 +1,18 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
-const JobTable = () => {
-  // Updated jobLinks array to include 20 items
+const JobTable = () => {    
   const jobLinks = [
-    'Networking Job 1',
-    'Networking Job 2',
-    'Networking Job 3',
-    'Networking Job 4',
-    'Networking Job 5',
-    'Networking Job 6',
-    'Networking Job 7',
-    'Networking Job 8',
-    'Networking Job 9',
-    'Networking Job 10',
-    'Networking Job 11',
-    'Networking Job 12',
-    'Networking Job 13',
-    'Networking Job 14',
-    'Networking Job 15',
-    'Networking Job 16',
-    'Networking Job 17',
-    'Networking Job 18',
-    'Networking Job 19',
-    'Networking Job 20',
+    '/job-description', '/job-description', '/job-description', '/job-description',
+    '/job-description', '/job-description', '/job-description', '/job-description',
+    '/job-description', '/job-description', '/job-description', '/job-description',
+    '/job-description', '/job-description', '/job-description', '/job-description',
+    '/job-description', '/job-description', '/job-description', '/job-description'
   ];
 
   const [currentPage, setCurrentPage] = useState(1);
   const [searchTerm, setSearchTerm] = useState('');
   const itemsPerPage = 8;
-
-  const handleRowClick = (url) => {
-    window.location.href = url;
-  };
 
   const filteredJobs = jobLinks.filter(job =>
     job.toLowerCase().includes(searchTerm.toLowerCase())
@@ -49,6 +30,12 @@ const JobTable = () => {
 
   const handleSearch = () => {
     setCurrentPage(1); // Reset to the first page on search
+  };
+
+  const navigate = useNavigate();
+
+  const handleRowClick = (jobLink) => {
+    navigate(jobLink);
   };
 
   return (
@@ -96,7 +83,8 @@ const JobTable = () => {
                   {startIndex + index + 1}
                 </td>
                 <td className="py-4 px-3 text-sm lg:text-base text-gray-800 font-semibold text-center">
-                  {job}
+                  {/* Optional: You can remove the Link if you want the entire row to be clickable */}
+                  {`Networking Job ${startIndex + index + 1}`}
                 </td>
                 <td className="py-4 px-3 text-sm lg:text-base text-gray-500 text-center">Addis Ababa, Ethiopia</td>
                 <td className="py-4 px-3 text-sm lg:text-base text-gray-500 text-center">Posted 2 days ago</td>

@@ -1,5 +1,5 @@
 import React from 'react';
-import JobIcon from '../Assets/one.jpg'; // Correct path
+import JobIcon from '../Assets/one.jpg';
 
 const IntroPage = () => {
   return (

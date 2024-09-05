@@ -1,6 +1,10 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect } from 'react';
 
 const NewPost = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, []);
+
   // State to store form data
   const [formData, setFormData] = useState({
     title: '',

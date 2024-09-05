@@ -3,9 +3,54 @@ import { FaEnvelope, FaPhone, FaFilePdf } from 'react-icons/fa';
 import { Link } from 'react-router-dom';
 
 const ApplicantDetail = () => {
+{/*
+  const location = useLocation();
+  const { applicant } = location.state || {};
+*/}  
   const [activeSection, setActiveSection] = useState('form');
-  const [emailBody, setEmailBody] = useState('');
+  const [score, setScore] = useState('');
+  const [messageContent, setMessageContent] = useState('');  
 
+  {/*
+    const applicants = {
+    1: {
+      name: 'Dawit Shewnagzaw',
+      jobTitle: '3D Designer',
+      email: 'dawit@example.com',
+      phone: '+123 456 7890',
+      institute: 'ASTU University',
+      fieldOfStudy: 'Computer Science',
+      cgpa: '3.75',
+      yearsOfExperience: '5 Years',
+      gender: 'Man',
+      cvLink: '/path-to-cv.pdf',
+    },
+    2: {
+      name: 'John Doe',
+      jobTitle: 'Software Engineer',
+      email: 'john@example.com',
+      phone: '+987 654 3210',
+      institute: 'MIT',
+      fieldOfStudy: 'Software Engineering',
+      cgpa: '4.00',
+      yearsOfExperience: '3 Years',
+      gender: 'Man',
+      cvLink: '/path-to-cv.pdf',
+    },
+    3: {
+      name: 'Jane Smith',
+      jobTitle: 'Data Scientist',
+      email: 'jane@example.com',
+      phone: '+456 789 1230',
+      institute: 'Stanford University',
+      fieldOfStudy: 'Data Science',
+      cgpa: '3.85',
+      yearsOfExperience: '4 Years',
+      gender: 'Woman',
+      cvLink: '/path-to-cv.pdf',
+    },
+  };
+    */}
   const applicant = {
     name: 'Dawit Shewnagzaw',
     jobTitle: '3D Designer',
@@ -19,14 +64,13 @@ const ApplicantDetail = () => {
     cvLink: '/path-to-cv.pdf',
   };
 
-  const handleSubmit = (e) => {
-    e.preventDefault();
-    console.log('Email body submitted:', emailBody);
+  const handleScoreChange = (e) => {
+    setScore(e.target.value);
   };
 
-  const handleChange = (e) => {
-    setEmailBody(e.target.value);
-  };
+  const handleMessageContentChange = (e) => {
+    setMessageContent(e.target.value);
+  };  
 
   return (
     <div className="min-h-screen bg-gray-100 pt-16 pb-12 px-4 sm:px-6 lg:px-8 mt-12 overflow-x-hidden">
@@ -40,7 +84,7 @@ const ApplicantDetail = () => {
           </div>
         </div>
 
-        {/* Contact Info and Actions */}
+        {/* Contact Info */}
         <div className="flex flex-col sm:flex-row justify-between items-start sm:items-center space-y-4 sm:space-y-0">
           <div className="space-y-2">
             <div className="flex items-center space-x-2">
@@ -51,14 +95,6 @@ const ApplicantDetail = () => {
               <FaPhone className="text-gray-500 text-sm sm:text-base" />
               <span className="text-gray-800 text-sm sm:text-base">{applicant.phone}</span>
             </div>
-          </div>
-          <div className="flex space-x-4">
-            <button className="bg-red-600 text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md hover:bg-red-700 transition duration-200">
-              Decline
-            </button>
-            <button className="bg-green-600 text-white px-4 py-2 sm:px-6 sm:py-3 text-sm sm:text-base rounded-md hover:bg-green-700 transition duration-200">
-              Approve
-            </button>
           </div>
         </div>
 
@@ -82,12 +118,12 @@ const ApplicantDetail = () => {
               {activeSection === 'cover-letter' && <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-600"></span>}
             </Link>
             <Link 
-              to="/email" 
-              className={`relative ${activeSection === 'email' ? 'text-blue-600' : 'text-black'} text-sm sm:text-base hover:text-blue-600 transition duration-200`}
-              onClick={() => setActiveSection('email')}
+              to="/result" 
+              className={`relative ${activeSection === 'result' ? 'text-blue-600' : 'text-black'} text-sm sm:text-base hover:text-blue-600 transition duration-200`}
+              onClick={() => setActiveSection('result')}
             >
-              Email
-              {activeSection === 'email' && <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-600"></span>}
+              Result
+              {activeSection === 'result' && <span className="absolute left-0 bottom-0 w-full h-0.5 bg-blue-600"></span>}
             </Link>
           </div>
           <div className="border-t border-gray-300 mt-2 sm:w-1/2 w-full mx-auto"></div> {/* Centered line */}
@@ -154,28 +190,161 @@ const ApplicantDetail = () => {
               <p className="mt-2 text-sm sm:text-base">Sincerely,<br />Dawit Shewnagzaw</p>
             </div>
           )}
+             
+          {activeSection === 'result' && (
+           <div className="space-y-6">
 
-          {activeSection === 'email' && (
-            <form onSubmit={handleSubmit} className="bg-gray-50 border border-gray-300 rounded-md p-2 sm:p-4">
-              <h3 className="text-base font-semibold">Email</h3>
-              <div className="mt-2">
-                <label htmlFor="body" className="block text-sm text-black font-medium">Body:</label>
-                <textarea
-                  id="body"
-                  name="body"
-                  value={emailBody}
-                  onChange={handleChange}
-                  className="mt-1 block w-full border border-gray-300 rounded-md shadow-sm focus:outline-none focus:ring-1 focus:ring-blue-500 sm:text-base"
-                  rows="5"
+              {/* first round screening Box */}
+            <div className="bg-gray-50 border border-gray-300 rounded-md p-2 sm:p-4">
+              <div className="flex justify-between items-center">
+                <h3 className="text-base font-semibold">First Round Screening Result</h3>
+                <div className="flex space-x-4">
+                  <button
+                    className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-200"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200"
+                  >
+                    Decline
+                  </button>
+                </div>
+              </div>
+              <div className="mt-2 flex items-center space-x-2">
+                <label htmlFor="score" className="block text-sm text-black font-medium">Score:</label>
+                <input
+                  type="number"
+                  id="score"
+                  name="score"
+                  value={score}
+                  onChange={handleScoreChange}
+                  className="border-gray-300 border rounded-md px-2 py-1 text-sm"
+                  min="0"
+                  max="100"
                 />
               </div>
-              <button
-                type="submit"
-                className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200"
-              >
-                Send
-              </button>
-            </form>
+              
+              <textarea
+                value={messageContent}
+                onChange={handleMessageContentChange}
+                rows="8"
+                placeholder="Write Letter"
+                className="mt-4 border-gray-300 border rounded-md p-2 w-full text-sm">
+              </textarea>
+
+              <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+                        Send
+                    </button>
+              </div>
+
+            </div>
+               {/* Exam Box */}
+            <div className="bg-gray-50 border border-gray-300 rounded-md p-2 sm:p-4">
+              <div className="flex justify-between items-center">
+                <h3 className="text-base font-semibold">Exam Result</h3>
+                <div className="flex space-x-4">
+                  <button
+                    className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-200"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200"
+                  >
+                    Decline
+                  </button>
+                </div>
+              </div>
+              <div className="mt-2 flex items-center space-x-2">
+                <label htmlFor="score" className="block text-sm text-black font-medium">Score:</label>
+                <input
+                  type="number"
+                  id="score"
+                  name="score"
+                  value={score}
+                  onChange={handleScoreChange}
+                  className="border-gray-300 border rounded-md px-2 py-1 text-sm"
+                  min="0"
+                  max="100"
+                />
+              </div>
+              
+              <textarea
+                value={messageContent}
+                onChange={handleMessageContentChange}
+                rows="8"
+                placeholder="Write Letter"
+                className="mt-4 border-gray-300 border rounded-md p-2 w-full text-sm">
+              </textarea>
+
+              <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+                        Send
+                    </button>
+                </div>
+
+            </div>
+             
+             {/* Interview Box */}
+
+            <div className="bg-gray-50 border border-gray-300 rounded-md p-2 sm:p-4">
+              <div className="flex justify-between items-center">
+                <h3 className="text-base font-semibold">Interview Result</h3>
+                <div className="flex space-x-4">
+                  <button
+                    className="bg-green-600 text-white px-4 py-2 rounded-md hover:bg-green-700 transition duration-200"
+                  >
+                    Approve
+                  </button>
+                  <button
+                    className="bg-red-600 text-white px-4 py-2 rounded-md hover:bg-red-700 transition duration-200"
+                  >
+                    Decline
+                  </button>
+                </div>
+              </div>
+              <div className="mt-2 flex items-center space-x-2">
+                <label htmlFor="score" className="block text-sm text-black font-medium">Score:</label>
+                <input
+                  type="number"
+                  id="score"
+                  name="score"
+                  value={score}
+                  onChange={handleScoreChange}
+                  className="border-gray-300 border rounded-md px-2 py-1 text-sm"
+                  min="0"
+                  max="100"
+                />
+              </div>
+              
+              <textarea
+                value={messageContent}
+                onChange={handleMessageContentChange}
+                rows="8"
+                placeholder="Write Letter"
+                className="mt-4 border-gray-300 border rounded-md p-2 w-full text-sm">
+              </textarea>
+
+              <div className="flex justify-center">
+                    <button
+                        type="submit"
+                        className="mt-4 bg-blue-600 text-white px-4 py-2 rounded-md hover:bg-blue-700 transition duration-200">
+                        Send
+                    </button>
+                </div>
+
+            </div>
+
+            
+
+           </div> 
+            
           )}
         </div>
       </div>

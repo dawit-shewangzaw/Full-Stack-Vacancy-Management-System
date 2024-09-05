@@ -8,25 +8,28 @@ import NewPost from "../Components/NewPost";
 import Preview from "../Components/Preview";
 import ApplicationS from "../Components/Application";
 import ApplicantDetail from "../Components/ApplicantDetail";
+import Recruitment from "../Components/ApplicantsList";
 
 function HR() {
     return (
       <>
-      <Navbar/>
-      {/*<BrowserRouter>
-        <ApplicationS/>
-      </BrowserRouter>*/}
-      <Router>
+        <Navbar/>
+        
       <ApplicantDetail/>
-      </Router>
+      
+        <Footer/>
+      </>
+    );
+}
+
+export default HR;
+
+  {/*<Router>
+      <ApplicantDetail/>
+      </Router>*/}
         {/*<Router>
             <Routes>
                 <Route path="/" element={<NewPost />} />
                 <Route path="/preview" element= {<Preview/>}/>
             </Routes>
         </Router>*/}
-            <Footer/>
-      </>
-    );
-  }
-  export default HR;

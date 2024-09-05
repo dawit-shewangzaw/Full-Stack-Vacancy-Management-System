@@ -1,4 +1,5 @@
 import React, { useState } from 'react';
+import { useNavigate } from 'react-router-dom';
 
 const Notification = () => {
     const requests = [
@@ -27,8 +28,9 @@ const Notification = () => {
         return requests.slice(startIndex, endIndex);
     };
 
+    const navigate = useNavigate();
     const handleRowClick = (request) => {
-        alert(`Team Leader: ${request.teamLeader}\nTeam: ${request.team}\nDate Requested: ${request.dateRequested}`);
+        navigate('/notification-detail' ,  { state: { request }}); // Navigates to /applicants-list when a row is clicked
     };
 
     return (

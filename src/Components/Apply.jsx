@@ -1,6 +1,9 @@
-import React, { useState } from 'react';
+import React, { useState , useEffect} from 'react';
 
 const Apply = () => {
+  useEffect(() => {
+    window.scrollTo(0, 0); // Scroll to the top of the page
+  }, []);
   const [cvError, setCvError] = useState('');
 
   const handleFileChange = (event) => {
